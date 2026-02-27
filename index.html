@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<!-- saved from url=(0023)https://localhost:7067/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>catechin - 緑茶</title>
+    
+    <link rel="stylesheet" href="./index_files/bootstrap.min.css">
+    <link rel="stylesheet" href="./index_files/site.css">
+    <link rel="stylesheet" href="./index_files/緑茶.styles.css">
+</head>
+<body>
+    <header b-m3oecmiu3x="">
+        <nav b-m3oecmiu3x="" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div b-m3oecmiu3x="" class="container-fluid">
+                <a class="navbar-brand" href="https://localhost:7067/">緑茶</a>
+                <button b-m3oecmiu3x="" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span b-m3oecmiu3x="" class="navbar-toggler-icon"></span>
+                </button>
+                <div b-m3oecmiu3x="" class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul b-m3oecmiu3x="" class="navbar-nav flex-grow-1">
+                        <li b-m3oecmiu3x="" class="nav-item">
+                            <a class="nav-link text-dark" href="https://localhost:7067/">Home</a>
+                        </li>
+                        <li b-m3oecmiu3x="" class="nav-item">
+                            <a class="nav-link text-dark" href="https://localhost:7067/Home/Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div b-m3oecmiu3x="" class="container">
+        <main b-m3oecmiu3x="" role="main" class="pb-3">
+            
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="./index_files/1000.png">
+    <meta name="robots" content="noindex, nofollow">
+
+
+<style>
+    /* 1. 全体レイアウト */
+    body, html {
+        margin: 0; padding: 0; width: 100%; height: 100%;
+        overflow: hidden; background-color: black;
+        font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    }
+
+    header, footer, nav { display: none !important; }
+
+    /* サイト全体のタップ時の青いハイライトを消す */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+    /* 動画コンテナ */
+    .main-container {
+        position: fixed; top: 0; left: 0;
+        width: 100vw; height: 100vh;
+    }
+
+   #main-video {
+    width: 100vw;
+    height: 100dvh;      /* 100vhから100dvhに変更 */
+    object-fit: fill;   /* 画面いっぱいに広げつつ、比率を保つ */
+}
+
+  #start-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; 
+   
+ height: 100dvh;         /* 画面全体の高さを確保 */
+    display: none;          /* JSで flex に切り替わる */
+    justify-content: center; /* 垂直方向中央 */
+    align-items: flex-end;     /* 水平方向中央 */
+    
+    font-size: 2.0rem;      /* ★文字を大きくして存在感を出す */
+    font-weight: bold;
+    color: rgba(255,255,255,0.5);
+    
+    z-index: 20000;         /* ★一番手前に持ってくる */
+    padding-bottom: 20dvh;      /* ★古い padding を 0 にしてズレを防止 */
+    cursor: pointer;
+    animation: fuwafuwa 2.5s ease-in-out infinite;
+
+    /* --- ここでアニメーションを適用 --- */
+        animation: fuwafuwa 2.5s ease-in-out infinite;
+    }
+
+    /* ふわふわ点滅のアニメーション本体 */
+    @keyframes fuwafuwa {
+        0%   { opacity: 0.3; } /* 一番薄い時（30%） */
+        50%  { opacity: 1.0; } /* 一番明るい時（100%） */
+        100% { opacity: 0.3; } /* また薄くなる */
+    }
+
+    /* 縦向き警告画面の設定 */
+    .orientation-warning {
+        /* 最初は隠しておき、縦画面の時だけ JS で表示をコントロールする */
+        display: none; 
+        position: fixed; top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: black; color: white;
+        z-index: 30000; justify-content: center; align-items: center;
+    }
+
+    /* 縦画面（portrait）かつ、ページ準備完了（active）の時だけ出す */
+    @media screen and (orientation: portrait) {
+        .orientation-warning.active {
+            display: flex !important;
+        }
+    }
+    
+        .oshi-container {
+     position: absolute;
+     bottom: 30px;            /* ★0から30pxに上げて、バーとの被りを防ぐ */
+     left: 10px;
+     display: flex;
+     align-items: flex-end;
+     padding: 2px;
+ }
+
+ .oshi-photo-portrait {
+     width: 50vw;             /* 横幅を画面の半分に */
+     height: auto !important; /* ★高さを自動にすることで比率を守り、表示させます */
+     border: 1px solid white;
+     border-radius: 3px;
+     display: block !important; /* ★強制的に表示 */
+     object-fit: contain;
+ }
+
+ .oshi-text-vertical {
+     writing-mode: vertical-rl;
+     color: white;
+     font-size: 1.2rem;
+     font-family: 'Hiragino Mincho ProN', serif;
+     margin-left: 5px;
+     letter-spacing: 0.2em;
+     text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+ }
+    
+
+    /* 透明ボタンエリア */
+    #button-group {
+    position: fixed;               /* absoluteからfixedに変更 */
+    top: 0; left: 0; 
+    width: 100vw; height: 100dvh;  /* 画面全体を覆う */
+    display: none; 
+    z-index: 100; 
+    pointer-events: none;
+}
+
+    .btn {
+        position: absolute; pointer-events: auto; cursor: pointer;
+        border: 2px solid rgba(255, 0, 0, 0); /* 位置調整用の赤枠 */
+        background: rgba(255, 0, 0, 0);    /* 位置調整用の薄赤色 */
+    }
+
+    /* ボタン位置（画像に合わせて%を微調整してください） */
+    #btn1 { top: 40%; left: 45%; width: 25%; height: 7.5%; }
+    #btn2 { top: 48.5%; left: 45%; width: 14%; height: 7.5%; }
+    #btn3 { top: 57.5%; left: 45%; width: 13%; height: 7.5%; }
+
+    /* ポップアップ（すりガラス） */
+    .modal-overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        display: none; justify-content: center; align-items: center;
+        z-index: 2000; cursor: pointer;
+    }
+
+    /* ポップアップの白いカード */
+    .modal-content {
+        background: linear-gradient(135deg, #9DCCE080, #cc66ff80);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid #FFFFFF80;
+        color: #333;
+        padding: 40px 30px;
+        border-radius: 40px;
+        
+        width: fit-content;
+        max-width: 80vw;
+        min-width: 30vw;
+        max-height: 80dvh;
+        -webkit-overflow-scrolling: touch; /* スマホでスルスル動くようにする */
+        height: auto;          /* 中身に合わせて縮む（これで黒い余白が消える） */
+    max-height: 75dvh;     /* 画面の75%までに制限（これでバーに被らない） */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        
+        /* 中身はスクロールできるようにする */
+        overflow-y: auto; 
+        
+        /* Firefox用のスクロールバー非表示設定 */
+        scrollbar-width: none; 
+        /* IE/Edge用のスクロールバー非表示設定 */
+        -ms-overflow-style: none; 
+        
+        position: relative;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        animation: modalIn 0.3s ease-out forwards;
+    
+
+    /* Chrome, Safari, Edge用のスクロールバー非表示設定（重要！） */
+    .modal-content::-webkit-scrollbar {
+        display: none !important;
+    }
+        
+        /* ここからアニメーションの指定（重要） */
+        animation: modalIn 0.3s ease-out forwards;
+    }
+
+    /* スクロールバーを隠す設定は独立させる */
+    .modal-content::-webkit-scrollbar { display: none; }
+
+    /* --- アニメーション本体（カッコの外に出します） --- */
+    @keyframes modalIn { 
+        from { opacity: 0; transform: scale(0.9); } 
+        to { opacity: 1; transform: scale(1); } 
+    }
+
+    .is-closing { 
+        animation: modalOut 0.3s ease-in forwards !important; 
+    }
+
+    @keyframes modalOut { 
+        from { opacity: 1; transform: scale(1); } 
+        to { opacity: 0; transform: scale(0.9); } 
+    }
+
+    /* ポップアップ内テキスト */
+    #modal-title { font-weight: bold; font-size: 1.8rem; margin-bottom: 15px; text-shadow: 0 0 10px white; }
+    #modal-body { line-height: 1.6; text-shadow: 0 0 5px white; }
+    .img-animate { animation: imgUp 0.8s ease-out forwards; }
+    @keyframes imgUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* SNSボタン */
+    .sns-link-btn {
+        display: inline-block; padding: 10px 20px; background: #1DA1F2;
+        color: white; text-decoration: none; border-radius: 20px; margin: 5px;
+    }
+    
+    /* 行全体の設定 */
+.sns-row {
+    display: flex;          /* 横に並べる */
+    justify-content: center; /* 行全体を中央に寄せる */
+    align-items: center;    /* 縦方向のズレをなくす */
+    margin-bottom: 8px;     /* 行と行の間隔 */
+    width: 100%;
+}
+
+/* 「りょくちゃ」「はいろ」の部分 */
+.sns-label {
+    width: 80px;            /* ★ここを固定幅にすることで、次の「：」が揃います */
+    text-align: justify;    /* 文字を両端に広げる */
+    text-align-last: justify;
+    font-weight: bold;
+}
+
+/* 「：」の部分 */
+.sns-separator {
+    margin: 0 10px;         /* 左右に少し隙間を作る */
+}
+
+/* Twitterリンクの部分 */
+.sns-link {
+    flex: 1;                /* 残りのスペースを使う */
+    text-align: left;       /* リンクは左揃えにして「：」に近づける */
+    max-width: 150px;       /* リンクが長くなりすぎないように */
+}
+</style>
+
+<div class="main-container">
+    <video id="main-video" playsinline="" muted="">
+        <source id="video-source" src="videos/videoB.mp4" type="video/mp4">
+</video>
+
+    <div id="start-overlay" onclick="startExperience()" style="display: flex;">Tap to start</div>
+
+    <div id="button-group">
+        <div id="btn1" class="btn" onclick="showModal(1)"></div>
+        <div id="btn2" class="btn" onclick="showModal(2)"></div>
+        <div id="btn3" class="btn" onclick="showModal(3)"></div>
+    </div>
+</div>
+
+<div class="orientation-warning active">
+&nbsp; &nbsp; <div style="text-align:center;">
+&nbsp; &nbsp; &nbsp; &nbsp; <div style="font-size: 50px;">🔄</div>
+&nbsp; &nbsp; <p>画面を横向きにしてお楽しみください</p>
+&nbsp; &nbsp; </div>
+
+&nbsp; &nbsp; <div class="oshi-container">
+&nbsp; &nbsp; &nbsp; &nbsp; <img src="./index_files/1000.png" class="oshi-photo-portrait">
+&nbsp; &nbsp; &nbsp; &nbsp; <div class="oshi-text-vertical">
+&nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; </div>
+&nbsp; &nbsp; </div>
+</div>
+
+
+<div id="custom-modal" class="modal-overlay" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <h2 id="modal-title">TITLE</h2>
+        <div id="modal-body">CONTENT</div>
+    </div>
+</div>
+
+    <script>
+    var isReady = false;
+
+    // 1. ビデオ要素を取得（必ず最初に！）
+    var v = document.getElementById('main-video');
+
+    window.onload = function() {
+        var warning = document.querySelector('.orientation-warning');
+        if (warning) {
+            warning.classList.add('active');
+        }
+
+        setTimeout(function() {
+            document.getElementById('start-overlay').style.display = 'flex';
+            isReady = true;
+        }, 1000);
+    };
+
+    function startExperience() {
+        if (!isReady) return;
+        var overlay = document.getElementById('start-overlay');
+        
+        overlay.style.pointerEvents = "none"; 
+        overlay.innerText = ""; 
+
+        setTimeout(function() {
+            overlay.style.display = 'none';
+            if(v) {
+                v.muted = false;
+                v.play();
+            }
+
+            setTimeout(function() {
+                var btnGroup = document.getElementById('button-group');
+                if(btnGroup) btnGroup.style.display = 'block';
+            }, 10000); 
+        }, 1000);
+    }
+
+    // 2. ループの設定（v の後に改行して記述）
+    if (v) {
+        v.onended = function() {
+            this.currentTime = 11.0; 
+            this.play();
+        };
+    }
+
+    // --- モーダル制御 ---
+    function showModal(id) {
+        var m = document.getElementById('custom-modal');
+        var t = document.getElementById('modal-title');
+        var b = document.getElementById('modal-body');
+
+        if (id === 1) {
+            t.innerText = "プロフィール";
+            // プロフィール画像を出すための修正（必要ならここにimgタグを足せます）
+            b.innerHTML = `<p>作成中…</p>`;
+        }
+        else if (id == 2) {
+            t.innerText = "SNS等";
+            b.innerHTML = `
+                <div class="sns-row">
+                    <span class="sns-label">りょくちゃ</span>
+                    <span class="sns-separator">:</span>
+                    <a href="https://www.X.com/RYOKUCHA1216" class="sns-link-btn">X (Twitter)</a>
+                </div>
+                <div class="sns-row">
+                    <span class="sns-label">はいろ</span>
+                    <span class="sns-separator">:</span>
+                    <a href="https://www.X.com/haiRo_9o" class="sns-link-btn">X (Twitter)</a>
+                </div>`;
+        }
+        else if (id == 3) {
+            t.innerText = "その他";
+            b.innerHTML = `
+                <div style="text-align: left; padding: 0 20px;">
+                    <p><strong>【制作について】</strong><br>
+                    本サイトに使用されている映像・音声の一部には、AI技術を使用しています。</p>
+                    <p><strong>【不具合について】</strong><br>
+                    お知らせは、SNSのDMまでお願いいたします。</p>
+                    <div style="text-align: right; font-size: 0.8rem; margin-top: 20px;">
+                    ※本サイトは個人の趣味で制作されたものです。無断転載等はご遠慮ください。<br>
+                        ※最終更新日：2026/2/27
+                    </div>
+                </div>`;
+        }
+        m.style.display = 'flex';
+        if (!history.state || !history.state.modalOpen) {
+            history.pushState({ modalOpen: true }, "");
+        }
+    }
+
+    function closeModal() {
+        var m = document.getElementById('custom-modal');
+        if (m && m.style.display === 'flex') {
+            m.classList.add('is-closing');
+            setTimeout(function() {
+                m.style.display = 'none';
+                m.classList.remove('is-closing');
+                if (history.state && history.state.modalOpen) history.back();
+            }, 300);
+        }
+    }
+
+    window.onpopstate = function() {
+        closeModal();
+    };
+</script>
+        </main>
+    </div>
+
+    <footer b-m3oecmiu3x="" class="border-top footer text-muted">
+        <div b-m3oecmiu3x="" class="container">
+            © 2026 - 緑茶 - <a href="https://localhost:7067/Home/Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="./index_files/jquery.min.js.ダウンロード"></script>
+    <script src="./index_files/bootstrap.bundle.min.js.ダウンロード"></script>
+    <script src="./index_files/site.js.ダウンロード"></script>
+    
+
+<!-- Visual Studio Browser Link -->
+<script type="text/javascript" src="./index_files/browserLink" async="async" id="__browserLink_initializationData" data-requestid="5697dc4a68404ab6b7f0d78edd827e7d" data-requestmappingfromserver="false" data-connecturl="http://localhost:63223/2cf374f807dc4433a99e9666fb277423/browserLink"></script>
+<!-- End Browser Link -->
+<script src="./index_files/aspnetcore-browser-refresh.js.ダウンロード"></script>
+
+</body></html>
